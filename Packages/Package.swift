@@ -48,6 +48,7 @@ let package = Package(
             name: "HomeFeature",
             dependencies: [
                 "SharedModels",
+                "DataFeature"
             ]
         )
         

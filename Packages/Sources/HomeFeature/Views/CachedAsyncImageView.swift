@@ -1,4 +1,5 @@
 import SwiftUI
+import DataFeature
 
 struct CachedAsyncImageView: View {
     let url: URL

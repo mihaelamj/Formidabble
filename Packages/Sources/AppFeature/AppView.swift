@@ -1,15 +1,17 @@
-import SharedModels
 import SwiftUI
+import DataFeature
+import HomeFeature
 
 public struct AppView: View {
-    public var body: some View {
-        VStack {
-            Text("Extreme Packaging!")
-                .font(.title)
-                .fontWeight(.bold)
-                .multilineTextAlignment(.center)
-                .padding()
-        }
+    
+    @State private var dataService: DataService
+
+    public init() {
+        let persistenceManager = PersistenceManager()
+        _dataService = State(initialValue: DataService(persistenceManager: persistenceManager))
     }
-    public init() {}
+    
+    public var body: some View {
+        ContentView(dataService: dataService)
+    }
 }

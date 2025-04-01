@@ -4,14 +4,14 @@ import SwiftUI
 
 #if canImport(UIKit)
 import UIKit
-typealias PlatformImage = UIImage
+public typealias PlatformImage = UIImage
 #elseif canImport(AppKit)
 import AppKit
-typealias PlatformImage = NSImage
+public typealias PlatformImage = NSImage
 #endif
 
-actor ImageCache {
-    static let shared = ImageCache()
+public actor ImageCache {
+    public static let shared = ImageCache()
 
     private let fileManager = FileManager.default
     private let cacheDirectory: URL = {
@@ -41,7 +41,7 @@ actor ImageCache {
         cacheDirectory.appendingPathComponent(key)
     }
 
-    func platformImage(from data: Data) -> PlatformImage? {
+    public func platformImage(from data: Data) -> PlatformImage? {
         #if canImport(UIKit)
         return UIImage(data: data)
         #elseif canImport(AppKit)
@@ -51,13 +51,13 @@ actor ImageCache {
         #endif
     }
 
-    func loadCached(for url: URL, width: CGFloat, height: CGFloat) -> PlatformImage? {
+    public func loadCached(for url: URL, width: CGFloat, height: CGFloat) -> PlatformImage? {
         let key = Self.cacheKey(for: url, width: width, height: height)
         guard let data = imageData(forKey: key) else { return nil }
         return platformImage(from: data)
     }
 
-    func cacheImageData(from url: URL, width: CGFloat, height: CGFloat) async {
+    public func cacheImageData(from url: URL, width: CGFloat, height: CGFloat) async {
         guard let (data, _) = try? await URLSession.shared.data(from: url) else { return }
         if platformImage(from: data) != nil {
             let key = Self.cacheKey(for: url, width: width, height: height)
@@ -65,7 +65,7 @@ actor ImageCache {
         }
     }
     
-    func platformImage(for url: URL, width: CGFloat, height: CGFloat) async -> Image? {
+    public func platformImage(for url: URL, width: CGFloat, height: CGFloat) async -> Image? {
         guard let native = await loadCached(for: url, width: width, height: height) else {
             return nil
         }

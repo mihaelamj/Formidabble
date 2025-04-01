@@ -1,4 +1,5 @@
 import SwiftUI
+import SharedModels
 
 struct QQuestionView: View {
     let item: QItem

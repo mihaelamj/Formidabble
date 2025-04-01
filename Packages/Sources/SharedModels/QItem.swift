@@ -1,25 +1,25 @@
 import Foundation
 
-enum QItemType: String, Codable, Sendable {
+public enum QItemType: String, Codable, Sendable {
     case page = "Page"
     case section = "Section"
     case question = "Question"
 }
 
-enum QQuestionType: String, Codable, Sendable {
+public enum QQuestionType: String, Codable, Sendable {
     case text
     case image
 }
 
 public struct QItem: Identifiable, Codable, Sendable {
     public let id: String // changed from UUID to match "page1", "q1", etc.
-    let type: QItemType
-    let title: String?
-    let children: [QItem]?
+    public let type: QItemType
+    public let title: String?
+    public let children: [QItem]?
 
-    let questionType: QQuestionType?
-    let content: String?
-    let imageURL: URL?
+    public let questionType: QQuestionType?
+    public let content: String?
+    public let imageURL: URL?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -37,7 +37,7 @@ public struct QItemList: Codable {
 }
 
 
-extension QItem {
+public extension QItem {
     var displayTitle: String {
         title ?? content ?? ""
     }

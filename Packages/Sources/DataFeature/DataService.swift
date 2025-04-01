@@ -10,7 +10,7 @@ public actor DataService {
         self.persistenceManager = persistenceManager
     }
 
-    func fetchData() async throws -> [QItem] {
+    public func fetchData() async throws -> [QItem] {
         do {
             let (data, _) = try await URLSession.shared.data(from: apiURL)
             let items = try JSONDecoder().decode([QItem].self, from: data)
