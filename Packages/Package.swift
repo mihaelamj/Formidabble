@@ -20,6 +20,8 @@ let package = Package(
             name: "AppFeature",
             dependencies: [
                 "SharedModels",
+                "DataFeature",
+                "HomeFeature"
             ]
         )
         

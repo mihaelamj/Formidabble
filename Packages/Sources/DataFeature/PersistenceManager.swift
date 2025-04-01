@@ -1,12 +1,13 @@
 import Foundation
+import SharedModels
 
-actor PersistenceManager {
+public actor PersistenceManager {
     private let fileManager = FileManager.default
     private let cacheDirectory: URL
     
     private static let fileName = "cached_items.json"
     
-    init() {
+    public init() {
         cacheDirectory = fileManager.urls(for: .cachesDirectory, in: .userDomainMask).first!
     }
     

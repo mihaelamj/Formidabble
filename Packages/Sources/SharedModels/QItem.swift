@@ -11,8 +11,8 @@ enum QQuestionType: String, Codable, Sendable {
     case image
 }
 
-struct QItem: Identifiable, Codable, Sendable {
-    let id: String // changed from UUID to match "page1", "q1", etc.
+public struct QItem: Identifiable, Codable, Sendable {
+    public let id: String // changed from UUID to match "page1", "q1", etc.
     let type: QItemType
     let title: String?
     let children: [QItem]?
@@ -32,8 +32,8 @@ struct QItem: Identifiable, Codable, Sendable {
     }
 }
 
-struct QItemList: Codable {
-    let items: [QItem]
+public struct QItemList: Codable {
+    public let items: [QItem]
 }
 
 
