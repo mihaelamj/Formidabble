@@ -36,7 +36,6 @@ public struct QItemList: Codable {
     public let items: [QItem]
 }
 
-
 public extension QItem {
     var displayTitle: String {
         title ?? content ?? ""
