@@ -78,3 +78,4 @@ ToDo:
 - add tests
 - use image cacheing
 - check for typos
+- delete comment and obsolete debug code
