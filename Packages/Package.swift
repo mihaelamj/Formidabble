@@ -14,23 +14,64 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/realm/SwiftLint", exact: "0.52.3"),
     ],
-    targets: [
-        .target(
+//    targets: [
+//        .target(
+//            name: "AppFeature",
+//            dependencies: [
+//                "SharedModels",
+//            ]
+//        ),
+//        .testTarget(
+//            name: "AppFeatureTests",
+//            dependencies: [
+//                "AppFeature"
+//            ]
+//        ),
+//        .target(
+//            name: "SharedModels"
+//        )
+//    ]
+    
+    targets: {
+        let appFeatureTarget = Target.target(
             name: "AppFeature",
             dependencies: [
                 "SharedModels",
+                "HomeFeature"
             ]
-        ),
-        .testTarget(
+        )
+        
+        let appFeatureTestsTarget =  Target.testTarget(
             name: "AppFeatureTests",
             dependencies: [
                 "AppFeature"
             ]
-        ),
-        .target(
-            name: "SharedModels"
         )
-    ]
+        
+        let sharedModelsTarget = Target.target(
+            name: "SharedModels",
+            dependencies: [],
+            resources: [
+                .copy("Mock")//Form.json
+            ]
+        )
+        
+        let sharedModelsTestsTarget =  Target.testTarget(
+            name: "SharedModelsTests",
+            dependencies: [
+                "SharedModels"
+            ]
+        )
+        
+        var targets: [Target] = [
+            appFeatureTarget,
+            appFeatureTestsTarget,
+            sharedModelsTarget,
+            sharedModelsTestsTarget
+        ]
+        
+        return targets
+    }()
 )
 
 // Inject base plugins into each target
