@@ -20,7 +20,6 @@ let package = Package(
             name: "AppFeature",
             dependencies: [
                 "SharedModels",
-                "HomeFeature"
             ]
         )
         
@@ -43,9 +42,25 @@ let package = Package(
             ]
         )
         
+        let homeFeatureTarget = Target.target(
+            name: "HomeFeature",
+            dependencies: [
+                "SharedModels",
+            ]
+        )
+        
+        let homeFeatureTestsTarget =  Target.testTarget(
+            name: "HomeFeatureTests",
+            dependencies: [
+                "HomeFeature"
+            ]
+        )
+        
         let dataFeatureTarget = Target.target(
             name: "DataFeature",
-            dependencies: [],
+            dependencies: [
+                "SharedModels"
+            ],
             resources: [
                 .process("Resources")
             ]
@@ -63,6 +78,8 @@ let package = Package(
             appFeatureTestsTarget,
             sharedModelsTarget,
             sharedModelsTestsTarget,
+            homeFeatureTarget,
+            homeFeatureTestsTarget,
             dataFeatureTarget,
             dataFeatureTestsTarget
         ]
