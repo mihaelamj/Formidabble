@@ -72,3 +72,9 @@ Examples:
 ---
 
 This setup allows all logic to live inside Swift packages, with the app targets serving as light entry points. You can easily test, scale, and replace modules without impacting the rest of the system.
+
+
+ToDo: 
+- add tests
+- use image cacheing
+- check for typos
