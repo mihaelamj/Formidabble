@@ -14,24 +14,7 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/realm/SwiftLint", exact: "0.52.3"),
     ],
-//    targets: [
-//        .target(
-//            name: "AppFeature",
-//            dependencies: [
-//                "SharedModels",
-//            ]
-//        ),
-//        .testTarget(
-//            name: "AppFeatureTests",
-//            dependencies: [
-//                "AppFeature"
-//            ]
-//        ),
-//        .target(
-//            name: "SharedModels"
-//        )
-//    ]
-    
+
     targets: {
         let appFeatureTarget = Target.target(
             name: "AppFeature",
