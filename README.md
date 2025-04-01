@@ -35,3 +35,40 @@ Packages/
 ```
 
 > ✅ This approach makes the architecture future-proof, testable, and platform-agnostic from the start.
+
+### 📦 Project Setup Steps
+
+#### 1. Clone the Base Structure
+
+Begin by downloading the foundational structure from my [ExtremePackaging](https://github.com/mihaelamj/ExtremePackaging/tree/stage/01-init-packages) repository.
+
+This provides a ready-to-go Swift Package layout with linting support:
+
+```
+.gitignore
+.swiftformat
+.swiftlint.yml
+LICENSE
+README.md
+Packages/
+Apps/
+```
+
+#### 2. Add Workspace
+
+Create a new Xcode workspace manually in the root of the project (I call it `Main.xcworkspace`).  
+Then add the `Packages` folder to the workspace.  
+This integrates your package structure into the workspace.
+
+#### 3. Add App Targets
+
+Under the `Apps` directory, create new SwiftUI app targets using Xcode.  
+Add these apps to the workspace. Each app target should only depend on the required feature modules from `Packages`.  
+Examples:
+
+- `FormidabbleDesktop`
+- `FormidabbleMobile`
+
+---
+
+This setup allows all logic to live inside Swift packages, with the app targets serving as light entry points. You can easily test, scale, and replace modules without impacting the rest of the system.
