@@ -4,4 +4,10 @@
    <FileRef
       location = "group:Packages">
    </FileRef>
+   <FileRef
+      location = "group:Apps/FormidabbleMobile/FormidabbleMobile.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Apps/FormidabbleDesktop/FormidabbleDesktop.xcodeproj">
+   </FileRef>
 </Workspace>
