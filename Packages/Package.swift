@@ -33,10 +33,7 @@ let package = Package(
         
         let sharedModelsTarget = Target.target(
             name: "SharedModels",
-            dependencies: [],
-            resources: [
-                .copy("Mock")//Form.json
-            ]
+            dependencies: []
         )
         
         let sharedModelsTestsTarget =  Target.testTarget(
@@ -46,11 +43,28 @@ let package = Package(
             ]
         )
         
+        let dataFeatureTarget = Target.target(
+            name: "DataFeature",
+            dependencies: [],
+            resources: [
+                .process("Resources")
+            ]
+        )
+        
+        let dataFeatureTestsTarget =  Target.testTarget(
+            name: "DataFeatureTests",
+            dependencies: [
+                "DataFeature"
+            ]
+        )
+        
         var targets: [Target] = [
             appFeatureTarget,
             appFeatureTestsTarget,
             sharedModelsTarget,
-            sharedModelsTestsTarget
+            sharedModelsTestsTarget,
+            dataFeatureTarget,
+            dataFeatureTestsTarget
         ]
         
         return targets
