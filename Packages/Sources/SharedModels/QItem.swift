@@ -16,7 +16,6 @@ public struct QItem: Identifiable, Codable, Sendable, Equatable {
     public let type: QItemType
     public let title: String?
     public let children: [QItem]?
-
     public let questionType: QQuestionType?
     public let content: String?
     public let imageURL: URL?

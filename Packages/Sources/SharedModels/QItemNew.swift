@@ -30,7 +30,7 @@ public struct QItemNew: Identifiable, Codable, Sendable, Equatable {
         case title
         case children = "items"
         case questionType
-        case imageURL = "src"       // Map imageURL to src
+        case imageURL = "src"    
     }
     
     public static func == (lhs: QItemNew, rhs: QItemNew) -> Bool {
