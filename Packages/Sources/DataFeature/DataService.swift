@@ -59,16 +59,10 @@ public actor DataService {
             await persistenceManager.saveItems(items)
             return items
         } catch {
-            // 1. Try to load cached data
+            // Try to load cached data
             if let cachedItems = await persistenceManager.loadItems() {
                 isUsingCachedDataFlag = true
                 return cachedItems
-            }
-
-            // 2. Try to load bundled JSON as a last resort
-            if let bundledItems = loadBundledItems() {
-                isUsingCachedDataFlag = true
-                return bundledItems
             }
 
             throw error
