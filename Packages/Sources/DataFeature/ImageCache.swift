@@ -66,7 +66,7 @@ public actor ImageCache {
     }
 
     public func platformImage(for url: URL, width: CGFloat, height: CGFloat) async -> Image? {
-        guard let native = await loadCached(for: url, width: width, height: height) else {
+        guard let native = loadCached(for: url, width: width, height: height) else {
             return nil
         }
 
