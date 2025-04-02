@@ -14,7 +14,7 @@ public actor DataService {
     }()
     private let persistenceManager: PersistenceManaging
     private nonisolated let urlSession: URLSessionProtocol
-    
+
     public init(persistenceManager: PersistenceManaging, urlSession: URLSessionProtocol = URLSession.shared) {
         self.persistenceManager = persistenceManager
         self.urlSession = urlSession

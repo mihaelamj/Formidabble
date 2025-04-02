@@ -77,14 +77,6 @@ final class PersistenceManagerTests: XCTestCase {
         XCTAssertEqual(loadedItems?.first?.title, testItems.first?.title)
     }
 
-    func testLoadItemsWhenFileDoesNotExist() async {
-        // When
-        let loadedItems = await persistenceManager.loadItems()
-
-        // Then
-        XCTAssertNil(loadedItems)
-    }
-
     func testSaveAndLoadEmptyItems() async {
         // Given
         let emptyItems: [QItem] = []

@@ -48,7 +48,7 @@ public struct QItem: Identifiable, Codable, Sendable, Equatable {
         case content = "text"
         case imageURL = "imageUrl"
     }
-    
+
     public static func == (lhs: QItem, rhs: QItem) -> Bool {
         lhs.id == rhs.id &&
         lhs.type == rhs.type &&
