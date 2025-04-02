@@ -12,7 +12,7 @@ let package = Package(
         .singleTargetLibrary("AppFeature"),
     ],
     dependencies: [
-        .package(url: "https://github.com/realm/SwiftLint", exact: "0.52.3"),
+        .package(url: "https://github.com/realm/SwiftLint", exact: "0.54.0"),
     ],
 
     targets: {
@@ -21,44 +21,44 @@ let package = Package(
             dependencies: [
                 "SharedModels",
                 "DataFeature",
-                "HomeFeature"
+                "HomeFeature",
             ]
         )
-        
+
         let appFeatureTestsTarget =  Target.testTarget(
             name: "AppFeatureTests",
             dependencies: [
                 "AppFeature"
             ]
         )
-        
+
         let sharedModelsTarget = Target.target(
             name: "SharedModels",
             dependencies: []
         )
-        
+
         let sharedModelsTestsTarget =  Target.testTarget(
             name: "SharedModelsTests",
             dependencies: [
                 "SharedModels"
             ]
         )
-        
+
         let homeFeatureTarget = Target.target(
             name: "HomeFeature",
             dependencies: [
                 "SharedModels",
-                "DataFeature"
+                "DataFeature",
             ]
         )
-        
+
         let homeFeatureTestsTarget =  Target.testTarget(
             name: "HomeFeatureTests",
             dependencies: [
                 "HomeFeature"
             ]
         )
-        
+
         let dataFeatureTarget = Target.target(
             name: "DataFeature",
             dependencies: [
@@ -68,14 +68,14 @@ let package = Package(
                 .process("Resources")
             ]
         )
-        
+
         let dataFeatureTestsTarget =  Target.testTarget(
             name: "DataFeatureTests",
             dependencies: [
                 "DataFeature"
             ]
         )
-        
+
         var targets: [Target] = [
             appFeatureTarget,
             appFeatureTestsTarget,
@@ -84,9 +84,9 @@ let package = Package(
             homeFeatureTarget,
             homeFeatureTestsTarget,
             dataFeatureTarget,
-            dataFeatureTestsTarget
+            dataFeatureTestsTarget,
         ]
-        
+
         return targets
     }()
 )

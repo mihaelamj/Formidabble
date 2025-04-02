@@ -3,7 +3,7 @@ import DataFeature
 
 struct CachedAsyncImageView: View {
     let url: URL
-    var onPhaseChange: ((AsyncImagePhase.Kind) -> Void)? = nil
+    var onPhaseChange: ((AsyncImagePhase.Kind) -> Void)?
 
     @State private var currentKind: AsyncImagePhase.Kind = .empty
     @State private var cachedImage: Image?

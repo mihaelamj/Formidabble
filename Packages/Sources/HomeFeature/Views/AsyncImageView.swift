@@ -6,12 +6,12 @@ public extension AsyncImagePhase {
         case success
         case failure
     }
-    
+
     var kind: Kind {
         switch self {
         case .empty: return .empty
-        case .success(_): return .success
-        case .failure(_): return .failure
+        case .success: return .success
+        case .failure: return .failure
         @unknown default: return .empty
         }
     }
@@ -19,14 +19,14 @@ public extension AsyncImagePhase {
 
 struct AsyncImageView: View {
     let url: URL
-    var onPhaseChange: ((AsyncImagePhase.Kind) -> Void)? = nil
+    var onPhaseChange: ((AsyncImagePhase.Kind) -> Void)?
 
     @State private var currentKind: AsyncImagePhase.Kind = .empty
 
     var body: some View {
         AsyncImage(url: url, scale: 1.0) { phase in
             let kind = phase.kind
-            
+
             // 🔍 Log phase changes
             if kind != currentKind {
                 print("📸 AsyncImageView - URL: \(url)")
@@ -67,5 +67,3 @@ struct AsyncImageView: View {
         }
     }
 }
-
-

@@ -3,7 +3,7 @@ import SharedModels
 
 @Observable
 final class QItemViewModel: Identifiable {
-    let id = UUID() 
+    let id = UUID()
     let item: QItem
     var isExpanded: Bool = true
     var children: [QItemViewModel]
