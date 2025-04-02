@@ -1,13 +1,13 @@
 import Foundation
 
-final class BetaSettings: @unchecked Sendable {
-    static let shared = BetaSettings()
+public final class BetaSettings: @unchecked Sendable {
+    public static let shared = BetaSettings()
     private init() {}
 
     private let defaults = UserDefaults.standard
     private let loadSimulationKey = "loadSimulation"
 
-    var loadSimulation: LoadSimulation {
+    public var loadSimulation: LoadSimulation {
         get {
             if let raw = defaults.string(forKey: loadSimulationKey),
                let value = LoadSimulation(rawValue: raw) {

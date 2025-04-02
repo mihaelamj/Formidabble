@@ -56,7 +56,8 @@ let package = Package(
         let dataFeatureTarget = Target.target(
             name: "DataFeature",
             dependencies: [
-                "SharedModels"
+                "SharedModels",
+                "BetaSettingsFeature"
             ],
             resources: [
                 .process("Resources")
