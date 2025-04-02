@@ -52,13 +52,6 @@ let package = Package(
             ]
         )
 
-        let homeFeatureTestsTarget =  Target.testTarget(
-            name: "HomeFeatureTests",
-            dependencies: [
-                "HomeFeature"
-            ]
-        )
-
         let dataFeatureTarget = Target.target(
             name: "DataFeature",
             dependencies: [
@@ -82,7 +75,6 @@ let package = Package(
             sharedModelsTarget,
             sharedModelsTestsTarget,
             homeFeatureTarget,
-            homeFeatureTestsTarget,
             dataFeatureTarget,
             dataFeatureTestsTarget,
         ]
