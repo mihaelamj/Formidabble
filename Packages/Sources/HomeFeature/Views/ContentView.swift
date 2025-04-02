@@ -61,12 +61,21 @@ public struct ContentView: View {
             }
             .navigationTitle(navigationTitle)
             #if os(iOS)
-            .navigationTitleDisplayMode(.inline)
+            .navigationBarTitleDisplayMode(.inline)
             #endif
             .toolbar {
                 ToolbarItemGroup(placement: toolbarPlacement) {
-                    Button("Collapse All") { viewModel.setAllExpanded(false) }
-                    Button("Expand All") { viewModel.setAllExpanded(true) }
+                    Button {
+                        viewModel.setAllExpanded(false)
+                    } label: {
+                        Label("Collapse All", systemImage: "arrow.up.left.and.arrow.down.right")
+                    }
+
+                    Button {
+                        viewModel.setAllExpanded(true)
+                    } label: {
+                        Label("Expand All", systemImage: "arrow.down.right.and.arrow.up.left")
+                    }
                 }
             }
         }
