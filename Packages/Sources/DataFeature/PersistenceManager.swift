@@ -2,8 +2,8 @@ import Foundation
 import SharedModels
 
 public protocol PersistenceManaging: Actor {
-    func saveItems(_ items: [QItem])
-    func loadItems() -> [QItem]?
+    func saveItems(_ item: QItem)
+    func loadItems() -> QItem?
 }
 
 public actor PersistenceManager: PersistenceManaging {
@@ -16,10 +16,10 @@ public actor PersistenceManager: PersistenceManaging {
         cacheDirectory = fileManager.urls(for: .cachesDirectory, in: .userDomainMask).first! // swiftlint:disable:this force_unwrapping
     }
 
-    public func saveItems(_ items: [QItem]) {
+    public func saveItems(_ item: QItem) {
         let encoder = JSONEncoder()
         do {
-            let data = try encoder.encode(items)
+            let data = try encoder.encode(item)
             let fileURL = cacheDirectory.appendingPathComponent(Self.fileName)
             try data.write(to: fileURL)
         } catch {
@@ -27,14 +27,14 @@ public actor PersistenceManager: PersistenceManaging {
         }
     }
 
-    public func loadItems() -> [QItem]? {
+    public func loadItems() -> QItem? {
         let fileURL = cacheDirectory.appendingPathComponent(Self.fileName)
 
         guard fileManager.fileExists(atPath: fileURL.path) else { return nil }
 
         do {
             let data = try Data(contentsOf: fileURL)
-            return try JSONDecoder().decode([QItem].self, from: data)
+            return try JSONDecoder().decode(QItem.self, from: data)
         } catch {
             print("Failed to load cached items: \(error)")
             return nil

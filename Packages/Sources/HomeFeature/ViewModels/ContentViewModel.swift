@@ -25,7 +25,7 @@ public final class ContentViewModel {
     private let dataService: DataService
     private var isUsingCachedDataFlag = false
 
-    var itemViewModels: [QItemViewModel] = []
+    var rootItemViewModel: QItemViewModel?
     var loadState: LoadState = .idle
 
     var isUsingCachedData: Bool {
@@ -41,8 +41,8 @@ public final class ContentViewModel {
         isUsingCachedDataFlag = false
 
         do {
-            let items = try await dataService.fetchData()
-            itemViewModels = items.map { QItemViewModel(item: $0) }
+            let rootItem = try await dataService.fetchData()
+            rootItemViewModel = QItemViewModel(item: rootItem)
             loadState = .loaded
 
             // Check if we're using cached data by examining the DataService
@@ -53,8 +53,6 @@ public final class ContentViewModel {
     }
 
     func setAllExpanded(_ expanded: Bool) {
-        for vm in itemViewModels {
-            vm.setRecursively(expanded: expanded)
-        }
+        rootItemViewModel?.setRecursively(expanded: expanded)
     }
 }

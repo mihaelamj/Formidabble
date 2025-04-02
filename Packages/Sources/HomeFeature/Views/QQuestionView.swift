@@ -6,7 +6,7 @@ struct QQuestionView: View {
     @State private var imageLoaded = false
 
     var body: some View {
-        if item.questionType == .text, let content = item.content {
+        if item.questionType == .text, let content = item.title {
             Text(content)
                 .font(.system(size: 14))
                 .padding(.leading, 16)

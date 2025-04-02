@@ -22,7 +22,7 @@ enum SimulationError: Error, LocalizedError {
 public actor DataService {
     private let apiURL: URL = {
         // swiftlint:disable:next force_unwrapping
-        return URL(string: "https://run.mocky.io/v3/1800b96f-c579-49e5-b0b8-49856a36ce39")!
+        return URL(string: "https://mocki.io/v1/6c823976-465e-401e-ae8d-d657d278e98e")!
     }()
     private let persistenceManager: PersistenceManaging
     private nonisolated let urlSession: URLSessionProtocol
@@ -43,7 +43,7 @@ public actor DataService {
         isUsingCachedDataFlag
     }
 
-    public func fetchData() async throws -> [QItem] {
+    public func fetchData() async throws -> QItem {
         // Only check simulation if the flag is enabled
         if useSimulation, let simulationResult = try handleSimulationIfNeeded() {
             return simulationResult
@@ -54,7 +54,7 @@ public actor DataService {
 
         do {
             let (data, _) = try await urlSession.data(from: apiURL)
-            let items = try JSONDecoder().decode([QItem].self, from: data)
+            let items = try JSONDecoder().decode(QItem.self, from: data)
 
             await persistenceManager.saveItems(items)
             return items
@@ -75,7 +75,7 @@ public actor DataService {
         }
     }
 
-    private func handleSimulationIfNeeded() throws -> [QItem]? {
+    private func handleSimulationIfNeeded() throws -> QItem? {
         switch BetaSettings.shared.loadSimulation {
         case .loadWithError:
             isUsingCachedDataFlag = false
@@ -97,12 +97,12 @@ public actor DataService {
         }
     }
 
-    private func loadBundledItems() -> [QItem]? {
+    private func loadBundledItems() -> QItem? {
         guard let url = Bundle.module.url(forResource: "Form", withExtension: "json"),
               let data = try? Data(contentsOf: url),
-              let wrapper = try? JSONDecoder().decode(QItemList.self, from: data) else {
+              let item = try? JSONDecoder().decode(QItem.self, from: data) else {
             return nil
         }
-        return wrapper.items
+        return item
     }
 }
