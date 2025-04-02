@@ -9,7 +9,10 @@ public struct AppDemoView: View {
 
     public init() {
         let persistenceManager = PersistenceManager()
-        let service = DataService(persistenceManager: persistenceManager)
+        let service = DataService(
+            persistenceManager: persistenceManager,
+            useSimulation: true // ✅ enable simulation mode
+        )
         _dataService = State(initialValue: service)
     }
 
