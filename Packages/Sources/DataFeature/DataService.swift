@@ -14,13 +14,20 @@ public actor DataService {
     }()
     private let persistenceManager: PersistenceManaging
     private nonisolated let urlSession: URLSessionProtocol
+    private var isUsingCachedDataFlag = false
 
     public init(persistenceManager: PersistenceManaging, urlSession: URLSessionProtocol = URLSession.shared) {
         self.persistenceManager = persistenceManager
         self.urlSession = urlSession
     }
 
+    public var isUsingCachedData: Bool {
+        isUsingCachedDataFlag
+    }
+
     public func fetchData() async throws -> [QItem] {
+        isUsingCachedDataFlag = false
+
         do {
             let (data, _) = try await urlSession.data(from: apiURL)
             let items = try JSONDecoder().decode([QItem].self, from: data)
@@ -30,11 +37,13 @@ public actor DataService {
         } catch {
             // 1. Try to load cached data
             if let cachedItems = await persistenceManager.loadItems() {
+                isUsingCachedDataFlag = true
                 return cachedItems
             }
 
             // 2. Try to load bundled JSON as a last resort
             if let bundledItems = loadBundledItems() {
+                isUsingCachedDataFlag = true
                 return bundledItems
             }
 

@@ -4,12 +4,26 @@ import DataFeature
 @MainActor
 public struct ContentView: View {
     @State private var viewModel: ContentViewModel
+    @State private var showCachedData = false
+    @State private var navigationTitle: String
 
     public init(dataService: DataService) {
         _viewModel = State(wrappedValue: ContentViewModel(dataService: dataService))
+        #if os(iOS)
+        _navigationTitle = State(initialValue: "iOS Challenge")
+        #else
+        _navigationTitle = State(initialValue: "macOS Challenge")
+        #endif
     }
 
-    // Platform-specific toolbar placement
+    private var baseTitle: String {
+        #if os(iOS)
+        "iOS Challenge"
+        #else
+        "macOS Challenge"
+        #endif
+    }
+
     private var toolbarPlacement: ToolbarItemPlacement {
         #if os(iOS)
         return .navigationBarTrailing
@@ -24,28 +38,31 @@ public struct ContentView: View {
                 switch viewModel.loadState {
                 case .idle, .loading:
                     ProgressView("Loading...")
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+
                 case .loaded:
-                    List {
-                        ForEach(viewModel.itemViewModels) { itemVM in
-                            QItemView(viewModel: itemVM, depth: 0)
+                    ZStack(alignment: .top) {
+                        List {
+                            ForEach(viewModel.itemViewModels) { itemVM in
+                                QItemView(viewModel: itemVM, depth: 0)
+                            }
+                        }
+
+                        if showCachedData {
+                            CachedDataView()
                         }
                     }
+
                 case .error(let error):
-                    VStack {
-                        Text("Failed to load content")
-                            .font(.headline)
-                        Text(error.localizedDescription)
-                            .font(.subheadline)
-                            .foregroundColor(.red)
-                        Button("Retry") {
-                            Task { await viewModel.loadData() }
-                        }
-                        .buttonStyle(.bordered)
-                        .padding()
+                    ErrorView(error: error) {
+                        Task { await viewModel.loadData() }
                     }
                 }
             }
-            .navigationTitle("iOS Challenge")
+            .navigationTitle(navigationTitle)
+            #if os(iOS)
+            .navigationTitleDisplayMode(.inline)
+            #endif
             .toolbar {
                 ToolbarItemGroup(placement: toolbarPlacement) {
                     Button("Collapse All") { viewModel.setAllExpanded(false) }
@@ -55,6 +72,31 @@ public struct ContentView: View {
         }
         .task {
             await viewModel.loadData()
+        }
+        .onChange(of: viewModel.loadState.kind) { _, newState in
+            if case .loaded = newState {
+                Task {
+                    let isUsingCached = viewModel.isUsingCachedData
+                    if isUsingCached {
+                        withAnimation {
+                            showCachedData = true
+                            navigationTitle = baseTitle // show normal title during banner
+                        }
+
+                        try? await Task.sleep(nanoseconds: 5 * 1_000_000_000)
+
+                        withAnimation {
+                            showCachedData = false
+                            navigationTitle = "\(baseTitle) 💾"
+                        }
+                    } else {
+                        withAnimation {
+                            showCachedData = false
+                            navigationTitle = baseTitle
+                        }
+                    }
+                }
+            }
         }
     }
 }
