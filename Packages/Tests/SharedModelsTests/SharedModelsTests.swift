@@ -5,9 +5,9 @@ final class SharedModelsTests: XCTestCase {
     // MARK: - QItemType Tests
 
     func testQItemTypeRawValues() {
-        XCTAssertEqual(QItemType.page.rawValue, "Page")
-        XCTAssertEqual(QItemType.section.rawValue, "Section")
-        XCTAssertEqual(QItemType.question.rawValue, "Question")
+        XCTAssertEqual(QItemType.page.rawValue, "page")
+        XCTAssertEqual(QItemType.section.rawValue, "section")
+        XCTAssertEqual(QItemType.question.rawValue, "question")
     }
 
     // MARK: - QQuestionType Tests
@@ -21,47 +21,38 @@ final class SharedModelsTests: XCTestCase {
 
     func testQItemInitialization() {
         let item = QItem(
-            id: "test1",
             type: .page,
             title: "Test Page",
             children: nil,
             questionType: nil,
-            content: nil,
             imageURL: nil
         )
 
-        XCTAssertEqual(item.id, "test1")
         XCTAssertEqual(item.type, .page)
         XCTAssertEqual(item.title, "Test Page")
         XCTAssertNil(item.children)
         XCTAssertNil(item.questionType)
-        XCTAssertNil(item.content)
         XCTAssertNil(item.imageURL)
     }
 
     func testQItemWithChildren() {
         let childItem = QItem(
-            id: "child1",
             type: .question,
             title: "Child Question",
             children: nil,
             questionType: .text,
-            content: "Question content",
             imageURL: nil
         )
 
         let parentItem = QItem(
-            id: "parent1",
             type: .section,
             title: "Parent Section",
             children: [childItem],
             questionType: nil,
-            content: nil,
             imageURL: nil
         )
 
         XCTAssertEqual(parentItem.children?.count, 1)
-        XCTAssertEqual(parentItem.children?.first?.id, "child1")
     }
 
     // MARK: - QItem Extensions Tests
@@ -69,77 +60,45 @@ final class SharedModelsTests: XCTestCase {
     func testDisplayTitle() {
         // Test with title
         let itemWithTitle = QItem(
-            id: "test1",
             type: .page,
             title: "Test Title",
             children: nil,
             questionType: nil,
-            content: nil,
             imageURL: nil
         )
         XCTAssertEqual(itemWithTitle.displayTitle, "Test Title")
 
-        // Test with content (no title)
-        let itemWithContent = QItem(
-            id: "test2",
+        // Test with no title
+        let itemWithNoTitle = QItem(
             type: .question,
             title: nil,
             children: nil,
             questionType: .text,
-            content: "Test Content",
             imageURL: nil
         )
-        XCTAssertEqual(itemWithContent.displayTitle, "Test Content")
-
-        // Test with no title or content
-        let itemWithNoTitleOrContent = QItem(
-            id: "test3",
-            type: .page,
-            title: nil,
-            children: nil,
-            questionType: nil,
-            content: nil,
-            imageURL: nil
-        )
-        XCTAssertEqual(itemWithNoTitleOrContent.displayTitle, "")
+        XCTAssertEqual(itemWithNoTitle.displayTitle, "")
     }
 
     func testHasVisibleTitle() {
         // Test with title
         let itemWithTitle = QItem(
-            id: "test1",
             type: .page,
             title: "Test Title",
             children: nil,
             questionType: nil,
-            content: nil,
             imageURL: nil
         )
         XCTAssertTrue(itemWithTitle.hasVisibleTitle)
 
-        // Test with content (no title)
-        let itemWithContent = QItem(
-            id: "test2",
+        // Test with no title
+        let itemWithNoTitle = QItem(
             type: .question,
             title: nil,
             children: nil,
             questionType: .text,
-            content: "Test Content",
             imageURL: nil
         )
-        XCTAssertTrue(itemWithContent.hasVisibleTitle)
-
-        // Test with no title or content
-        let itemWithNoTitleOrContent = QItem(
-            id: "test3",
-            type: .page,
-            title: nil,
-            children: nil,
-            questionType: nil,
-            content: nil,
-            imageURL: nil
-        )
-        XCTAssertFalse(itemWithNoTitleOrContent.hasVisibleTitle)
+        XCTAssertFalse(itemWithNoTitle.hasVisibleTitle)
     }
 
     // MARK: - Codable Tests
@@ -147,51 +106,142 @@ final class SharedModelsTests: XCTestCase {
     func testQItemCodable() throws {
         let json = """
         {
-            "id": "test1",
-            "itemType": "Page",
-            "title": "Test Page",
-            "items": null,
-            "questionType": null,
-            "text": null,
-            "imageUrl": null
-        }
-        """.utf8
-
-        let decoder = JSONDecoder()
-        let item = try decoder.decode(QItem.self, from: Data(json))
-
-        XCTAssertEqual(item.id, "test1")
-        XCTAssertEqual(item.type, .page)
-        XCTAssertEqual(item.title, "Test Page")
-        XCTAssertNil(item.children)
-        XCTAssertNil(item.questionType)
-        XCTAssertNil(item.content)
-        XCTAssertNil(item.imageURL)
-    }
-
-    func testQItemListCodable() throws {
-        let json = """
-        {
+            "type": "page",
+            "title": "Main Page",
             "items": [
                 {
-                    "id": "page1",
-                    "itemType": "Page",
-                    "title": "Page 1",
-                    "items": null,
-                    "questionType": null,
-                    "text": null,
-                    "imageUrl": null
+                    "type": "section",
+                    "title": "Introduction",
+                    "items": [
+                        {
+                            "type": "text",
+                            "title": "Welcome to the main page!"
+                        },
+                        {
+                            "type": "image",
+                            "src": "https://robohash.org/280?&set=set4&size=400x400",
+                            "title": "Welcome Image"
+                        }
+                    ]
                 }
             ]
         }
         """.utf8
 
         let decoder = JSONDecoder()
-        let itemList = try decoder.decode(QItemList.self, from: Data(json))
+        let item = try decoder.decode(QItem.self, from: Data(json))
 
-        XCTAssertEqual(itemList.items.count, 1)
-        XCTAssertEqual(itemList.items.first?.id, "page1")
-        XCTAssertEqual(itemList.items.first?.type, .page)
-        XCTAssertEqual(itemList.items.first?.title, "Page 1")
+        XCTAssertEqual(item.type, .page)
+        XCTAssertEqual(item.title, "Main Page")
+        XCTAssertEqual(item.children?.count, 1)
+        
+        let section = item.children?.first
+        XCTAssertEqual(section?.type, .section)
+        XCTAssertEqual(section?.title, "Introduction")
+        XCTAssertEqual(section?.children?.count, 2)
+        
+        let textQuestion = section?.children?.first
+        XCTAssertEqual(textQuestion?.type, .question)
+        XCTAssertEqual(textQuestion?.title, "Welcome to the main page!")
+        XCTAssertEqual(textQuestion?.questionType, .text)
+        
+        let imageQuestion = section?.children?.last
+        XCTAssertEqual(imageQuestion?.type, .question)
+        XCTAssertEqual(imageQuestion?.title, "Welcome Image")
+        XCTAssertEqual(imageQuestion?.questionType, .image)
+        XCTAssertEqual(imageQuestion?.imageURL?.absoluteString, "https://robohash.org/280?&set=set4&size=400x400")
+    }
+
+    func testQItemWithNestedStructure() throws {
+        let json = """
+        {
+            "type": "section",
+            "title": "Chapter 1",
+            "items": [
+                {
+                    "type": "text",
+                    "title": "This is the first chapter."
+                },
+                {
+                    "type": "section",
+                    "title": "Subsection 1.1",
+                    "items": [
+                        {
+                            "type": "text",
+                            "title": "This is a subsection under Chapter 1."
+                        },
+                        {
+                            "type": "image",
+                            "src": "https://robohash.org/100?&set=set4&size=400x400",
+                            "title": "Chapter 1 Image"
+                        }
+                    ]
+                }
+            ]
+        }
+        """.utf8
+
+        let decoder = JSONDecoder()
+        let item = try decoder.decode(QItem.self, from: Data(json))
+
+        XCTAssertEqual(item.type, .section)
+        XCTAssertEqual(item.title, "Chapter 1")
+        XCTAssertEqual(item.children?.count, 2)
+        
+        let textQuestion = item.children?.first
+        XCTAssertEqual(textQuestion?.type, .question)
+        XCTAssertEqual(textQuestion?.title, "This is the first chapter.")
+        XCTAssertEqual(textQuestion?.questionType, .text)
+        
+        let subsection = item.children?.last
+        XCTAssertEqual(subsection?.type, .section)
+        XCTAssertEqual(subsection?.title, "Subsection 1.1")
+        XCTAssertEqual(subsection?.children?.count, 2)
+        
+        let subsectionText = subsection?.children?.first
+        XCTAssertEqual(subsectionText?.type, .question)
+        XCTAssertEqual(subsectionText?.title, "This is a subsection under Chapter 1.")
+        XCTAssertEqual(subsectionText?.questionType, .text)
+        
+        let subsectionImage = subsection?.children?.last
+        XCTAssertEqual(subsectionImage?.type, .question)
+        XCTAssertEqual(subsectionImage?.title, "Chapter 1 Image")
+        XCTAssertEqual(subsectionImage?.questionType, .image)
+        XCTAssertEqual(subsectionImage?.imageURL?.absoluteString, "https://robohash.org/100?&set=set4&size=400x400")
+    }
+
+    func testQItemWithImageCodable() throws {
+        let json = """
+        {
+            "type": "image",
+            "title": "Test Image",
+            "src": "https://example.com/image.jpg"
+        }
+        """.utf8
+
+        let decoder = JSONDecoder()
+        let item = try decoder.decode(QItem.self, from: Data(json))
+
+        XCTAssertEqual(item.type, .question)
+        XCTAssertEqual(item.title, "Test Image")
+        XCTAssertEqual(item.questionType, .image)
+        XCTAssertEqual(item.imageURL?.absoluteString, "https://example.com/image.jpg")
+    }
+
+    func testQItemWithTextQuestionCodable() throws {
+        let json = """
+        {
+            "type": "text",
+            "title": "Test Question"
+        }
+        """.utf8
+
+        let decoder = JSONDecoder()
+        let item = try decoder.decode(QItem.self, from: Data(json))
+
+        XCTAssertEqual(item.type, .question)
+        XCTAssertEqual(item.title, "Test Question")
+        XCTAssertEqual(item.questionType, .text)
+        XCTAssertNil(item.imageURL)
     }
 }

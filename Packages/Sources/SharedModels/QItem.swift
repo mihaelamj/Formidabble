@@ -1,9 +1,9 @@
 import Foundation
 
 public enum QItemType: String, Codable, Sendable {
-    case page = "Page"
-    case section = "Section"
-    case question = "Question"
+    case page
+    case section
+    case question
 }
 
 public enum QQuestionType: String, Codable, Sendable {
@@ -11,8 +11,7 @@ public enum QQuestionType: String, Codable, Sendable {
     case image
 }
 
-public struct QItem: Identifiable, Codable, Sendable, Equatable {
-    public let id: String
+public struct QItem: Codable, Sendable, Equatable {
     public let type: QItemType
     public let title: String?
     public let children: [QItem]?
@@ -20,14 +19,12 @@ public struct QItem: Identifiable, Codable, Sendable, Equatable {
     public let imageURL: URL?
     
     public init(
-        id: String,
         type: QItemType,
         title: String? = nil,
         children: [QItem]? = nil,
         questionType: QQuestionType? = nil,
         imageURL: URL? = nil
     ) {
-        self.id = id
         self.type = type
         self.title = title
         self.children = children
@@ -36,7 +33,6 @@ public struct QItem: Identifiable, Codable, Sendable, Equatable {
     }
     
     enum CodingKeys: String, CodingKey {
-        case id
         case type
         case title
         case children = "items"
@@ -45,7 +41,6 @@ public struct QItem: Identifiable, Codable, Sendable, Equatable {
     }
     
     public static func == (lhs: QItem, rhs: QItem) -> Bool {
-        lhs.id == rhs.id &&
         lhs.type == rhs.type &&
         lhs.title == rhs.title &&
         lhs.questionType == rhs.questionType &&
@@ -55,7 +50,6 @@ public struct QItem: Identifiable, Codable, Sendable, Equatable {
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(String.self, forKey: .id)
         let typeString = try container.decode(String.self, forKey: .type)
         
         switch typeString {
