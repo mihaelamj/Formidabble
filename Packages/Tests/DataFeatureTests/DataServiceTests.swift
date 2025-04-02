@@ -109,68 +109,68 @@ final class DataServiceTests: XCTestCase {
         XCTAssertEqual(item.type, .page)
         XCTAssertEqual(item.title, "Main Page")
         XCTAssertEqual(item.children?.count, 4)
-        
+
         // Check Personal Information page
         let personalInfoPage = item.children?.first
         XCTAssertEqual(personalInfoPage?.type, .page)
         XCTAssertEqual(personalInfoPage?.title, "Personal Information")
         XCTAssertEqual(personalInfoPage?.children?.count, 2)
-        
+
         let basicDetailsSection = personalInfoPage?.children?.first
         XCTAssertEqual(basicDetailsSection?.type, .section)
         XCTAssertEqual(basicDetailsSection?.title, "Basic Details")
         XCTAssertEqual(basicDetailsSection?.children?.count, 3)
-        
+
         let nameQuestion = basicDetailsSection?.children?.first
         XCTAssertEqual(nameQuestion?.type, .question)
         XCTAssertEqual(nameQuestion?.title, "What is your full name?")
         XCTAssertEqual(nameQuestion?.questionType, .text)
-        
+
         let idPhotoQuestion = basicDetailsSection?.children?.last
         XCTAssertEqual(idPhotoQuestion?.type, .question)
         XCTAssertEqual(idPhotoQuestion?.title, "Upload a photo of your ID.")
         XCTAssertEqual(idPhotoQuestion?.questionType, .image)
         XCTAssertEqual(idPhotoQuestion?.imageURL?.absoluteString, "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop")
-        
+
         // Check Contact Information section
         let contactSection = personalInfoPage?.children?.last
         XCTAssertEqual(contactSection?.type, .section)
         XCTAssertEqual(contactSection?.title, "Contact Information")
         XCTAssertEqual(contactSection?.children?.count, 3)
-        
+
         let addressSection = contactSection?.children?.last
         XCTAssertEqual(addressSection?.type, .section)
         XCTAssertEqual(addressSection?.title, "Address Details")
         XCTAssertEqual(addressSection?.children?.count, 2)
-        
+
         // Check Interests and Hobbies page
         let interestsPage = item.children?[1]
         XCTAssertEqual(interestsPage?.type, .page)
         XCTAssertEqual(interestsPage?.title, "Interests and Hobbies")
         XCTAssertEqual(interestsPage?.children?.count, 2)
-        
+
         // Check Travel Experiences page
         let travelPage = item.children?[2]
         XCTAssertEqual(travelPage?.type, .page)
         XCTAssertEqual(travelPage?.title, "Travel Experiences")
         XCTAssertEqual(travelPage?.children?.count, 3)
-        
+
         // Check Work and Education page
         let workPage = item.children?.last
         XCTAssertEqual(workPage?.type, .page)
         XCTAssertEqual(workPage?.title, "Work and Education")
         XCTAssertEqual(workPage?.children?.count, 2)
-        
+
         let educationSection = workPage?.children?.first
         XCTAssertEqual(educationSection?.type, .section)
         XCTAssertEqual(educationSection?.title, "Education History")
         XCTAssertEqual(educationSection?.children?.count, 3)
-        
+
         let certificationsSection = educationSection?.children?.last
         XCTAssertEqual(certificationsSection?.type, .section)
         XCTAssertEqual(certificationsSection?.title, "Certifications")
         XCTAssertEqual(certificationsSection?.children?.count, 2)
-        
+
         let certificatePhoto = certificationsSection?.children?.last
         XCTAssertEqual(certificatePhoto?.type, .question)
         XCTAssertEqual(certificatePhoto?.title, "Upload a photo of your certificate.")

@@ -135,17 +135,17 @@ final class SharedModelsTests: XCTestCase {
         XCTAssertEqual(item.type, .page)
         XCTAssertEqual(item.title, "Main Page")
         XCTAssertEqual(item.children?.count, 1)
-        
+
         let section = item.children?.first
         XCTAssertEqual(section?.type, .section)
         XCTAssertEqual(section?.title, "Introduction")
         XCTAssertEqual(section?.children?.count, 2)
-        
+
         let textQuestion = section?.children?.first
         XCTAssertEqual(textQuestion?.type, .question)
         XCTAssertEqual(textQuestion?.title, "Welcome to the main page!")
         XCTAssertEqual(textQuestion?.questionType, .text)
-        
+
         let imageQuestion = section?.children?.last
         XCTAssertEqual(imageQuestion?.type, .question)
         XCTAssertEqual(imageQuestion?.title, "Welcome Image")
@@ -188,22 +188,22 @@ final class SharedModelsTests: XCTestCase {
         XCTAssertEqual(item.type, .section)
         XCTAssertEqual(item.title, "Chapter 1")
         XCTAssertEqual(item.children?.count, 2)
-        
+
         let textQuestion = item.children?.first
         XCTAssertEqual(textQuestion?.type, .question)
         XCTAssertEqual(textQuestion?.title, "This is the first chapter.")
         XCTAssertEqual(textQuestion?.questionType, .text)
-        
+
         let subsection = item.children?.last
         XCTAssertEqual(subsection?.type, .section)
         XCTAssertEqual(subsection?.title, "Subsection 1.1")
         XCTAssertEqual(subsection?.children?.count, 2)
-        
+
         let subsectionText = subsection?.children?.first
         XCTAssertEqual(subsectionText?.type, .question)
         XCTAssertEqual(subsectionText?.title, "This is a subsection under Chapter 1.")
         XCTAssertEqual(subsectionText?.questionType, .text)
-        
+
         let subsectionImage = subsection?.children?.last
         XCTAssertEqual(subsectionImage?.type, .question)
         XCTAssertEqual(subsectionImage?.title, "Chapter 1 Image")

@@ -17,7 +17,7 @@ public struct QItem: Codable, Sendable, Equatable {
     public let children: [QItem]?
     public let questionType: QQuestionType?
     public let imageURL: URL?
-    
+
     public init(
         type: QItemType,
         title: String? = nil,
@@ -31,7 +31,7 @@ public struct QItem: Codable, Sendable, Equatable {
         self.questionType = questionType
         self.imageURL = imageURL
     }
-    
+
     enum CodingKeys: String, CodingKey {
         case type
         case title
@@ -39,7 +39,7 @@ public struct QItem: Codable, Sendable, Equatable {
         case questionType
         case imageURL = "src"
     }
-    
+
     public static func == (lhs: QItem, rhs: QItem) -> Bool {
         lhs.type == rhs.type &&
         lhs.title == rhs.title &&
@@ -47,11 +47,11 @@ public struct QItem: Codable, Sendable, Equatable {
         lhs.imageURL == rhs.imageURL &&
         lhs.children == rhs.children
     }
-    
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let typeString = try container.decode(String.self, forKey: .type)
-        
+
         switch typeString {
         case "page":
             type = .page
@@ -72,7 +72,7 @@ public struct QItem: Codable, Sendable, Equatable {
                 debugDescription: "Invalid item type: \(typeString)"
             )
         }
-        
+
         title = try container.decodeIfPresent(String.self, forKey: .title)
         children = try container.decodeIfPresent([QItem].self, forKey: .children)
         imageURL = try container.decodeIfPresent(URL.self, forKey: .imageURL)
@@ -83,7 +83,7 @@ public extension QItem {
     var displayTitle: String {
         title ?? ""
     }
-    
+
     var hasVisibleTitle: Bool {
         !(displayTitle.isEmpty)
     }

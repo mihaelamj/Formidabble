@@ -12,7 +12,7 @@ import AppFeature
 struct FormidabbleMobileApp: App {
     var body: some Scene {
         WindowGroup {
-            AppDemoView()
+            AppView()
         }
     }
 }

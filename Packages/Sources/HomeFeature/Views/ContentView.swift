@@ -5,7 +5,7 @@ private struct RootItemSection: View {
     let root: QItemViewModel?
 
     var body: some View {
-        if let root = root {
+        if let root {
             QItemView(viewModel: root, depth: 0)
         }
     }

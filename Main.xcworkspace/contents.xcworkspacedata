@@ -8,6 +8,9 @@
       location = "group:Packages">
    </FileRef>
    <FileRef
+      location = "group:Apps/FormidabbleMobileDemo/FormidabbleMobileDemo.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Apps/FormidabbleMobile/FormidabbleMobile.xcodeproj">
    </FileRef>
    <FileRef

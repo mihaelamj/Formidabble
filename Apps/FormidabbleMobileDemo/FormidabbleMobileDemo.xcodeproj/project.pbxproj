@@ -7,197 +7,146 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A9BBBADB2D9C9663005A4061 /* AppFeature in Frameworks */ = {isa = PBXBuildFile; productRef = A9BBBADA2D9C9663005A4061 /* AppFeature */; };
+		A9002AB92D9DDC2500FF2F55 /* AppFeature in Frameworks */ = {isa = PBXBuildFile; productRef = A9002AB82D9DDC2500FF2F55 /* AppFeature */; };
+		A9002ABB2D9DDCBF00FF2F55 /* DemoLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9002ABA2D9DDCBF00FF2F55 /* DemoLaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A97414992D9DDB1C00F74394 /* FormidabbleMobileDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FormidabbleMobileDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		A9BBBA7F2D9C9506005A4061 /* FormidabbleMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FormidabbleMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9002ABA2D9DDCBF00FF2F55 /* DemoLaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DemoLaunchScreen.storyboard; sourceTree = "<group>"; };
+		A97414AD2D9DDB6300F74394 /* FormidabbleMobileDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FormidabbleMobileDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		A9BBBAC12D9C9617005A4061 /* Exceptions for "FormidabbleMobile" folder in "FormidabbleMobile" target */ = {
+		A9002AB62D9DDBEE00FF2F55 /* Exceptions for "FormidabbleMobileDemo" folder in "FormidabbleMobileDemo" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
-			target = A9BBBA7E2D9C9506005A4061 /* FormidabbleMobile */;
+			target = A97414AC2D9DDB6300F74394 /* FormidabbleMobileDemo */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		A974149A2D9DDB1C00F74394 /* FormidabbleMobileDemo */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = FormidabbleMobileDemo;
-			sourceTree = "<group>";
-		};
-		A9BBBA812D9C9506005A4061 /* FormidabbleMobile */ = {
+		A97414AF2D9DDB6300F74394 /* FormidabbleMobileDemo */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				A9BBBAC12D9C9617005A4061 /* Exceptions for "FormidabbleMobile" folder in "FormidabbleMobile" target */,
+				A9002AB62D9DDBEE00FF2F55 /* Exceptions for "FormidabbleMobileDemo" folder in "FormidabbleMobileDemo" target */,
 			);
-			path = FormidabbleMobile;
+			path = FormidabbleMobileDemo;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		A97414962D9DDB1C00F74394 /* Frameworks */ = {
+		A97414AA2D9DDB6300F74394 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A9BBBA7C2D9C9506005A4061 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A9BBBADB2D9C9663005A4061 /* AppFeature in Frameworks */,
+				A9002AB92D9DDC2500FF2F55 /* AppFeature in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A9BBBA762D9C9506005A4061 = {
-			isa = PBXGroup;
-			children = (
-				A9BBBA812D9C9506005A4061 /* FormidabbleMobile */,
-				A974149A2D9DDB1C00F74394 /* FormidabbleMobileDemo */,
-				A9BBBAD92D9C9663005A4061 /* Frameworks */,
-				A9BBBA802D9C9506005A4061 /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		A9BBBA802D9C9506005A4061 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				A9BBBA7F2D9C9506005A4061 /* FormidabbleMobile.app */,
-				A97414992D9DDB1C00F74394 /* FormidabbleMobileDemo.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		A9BBBAD92D9C9663005A4061 /* Frameworks */ = {
+		A9002AB72D9DDC2500FF2F55 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A97414A42D9DDB6300F74394 = {
+			isa = PBXGroup;
+			children = (
+				A9002ABA2D9DDCBF00FF2F55 /* DemoLaunchScreen.storyboard */,
+				A97414AF2D9DDB6300F74394 /* FormidabbleMobileDemo */,
+				A9002AB72D9DDC2500FF2F55 /* Frameworks */,
+				A97414AE2D9DDB6300F74394 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A97414AE2D9DDB6300F74394 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A97414AD2D9DDB6300F74394 /* FormidabbleMobileDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A97414982D9DDB1C00F74394 /* FormidabbleMobileDemo */ = {
+		A97414AC2D9DDB6300F74394 /* FormidabbleMobileDemo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A97414A32D9DDB1E00F74394 /* Build configuration list for PBXNativeTarget "FormidabbleMobileDemo" */;
+			buildConfigurationList = A97414B82D9DDB6500F74394 /* Build configuration list for PBXNativeTarget "FormidabbleMobileDemo" */;
 			buildPhases = (
-				A97414952D9DDB1C00F74394 /* Sources */,
-				A97414962D9DDB1C00F74394 /* Frameworks */,
-				A97414972D9DDB1C00F74394 /* Resources */,
+				A97414A92D9DDB6300F74394 /* Sources */,
+				A97414AA2D9DDB6300F74394 /* Frameworks */,
+				A97414AB2D9DDB6300F74394 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				A974149A2D9DDB1C00F74394 /* FormidabbleMobileDemo */,
+				A97414AF2D9DDB6300F74394 /* FormidabbleMobileDemo */,
 			);
 			name = FormidabbleMobileDemo;
 			packageProductDependencies = (
+				A9002AB82D9DDC2500FF2F55 /* AppFeature */,
 			);
 			productName = FormidabbleMobileDemo;
-			productReference = A97414992D9DDB1C00F74394 /* FormidabbleMobileDemo.app */;
-			productType = "com.apple.product-type.application";
-		};
-		A9BBBA7E2D9C9506005A4061 /* FormidabbleMobile */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A9BBBA8D2D9C9508005A4061 /* Build configuration list for PBXNativeTarget "FormidabbleMobile" */;
-			buildPhases = (
-				A9BBBA7B2D9C9506005A4061 /* Sources */,
-				A9BBBA7C2D9C9506005A4061 /* Frameworks */,
-				A9BBBA7D2D9C9506005A4061 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				A9BBBA812D9C9506005A4061 /* FormidabbleMobile */,
-			);
-			name = FormidabbleMobile;
-			packageProductDependencies = (
-				A9BBBADA2D9C9663005A4061 /* AppFeature */,
-			);
-			productName = FormidabbleMobile;
-			productReference = A9BBBA7F2D9C9506005A4061 /* FormidabbleMobile.app */;
+			productReference = A97414AD2D9DDB6300F74394 /* FormidabbleMobileDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		A9BBBA772D9C9506005A4061 /* Project object */ = {
+		A97414A52D9DDB6300F74394 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1630;
-				LastUpgradeCheck = 1620;
+				LastUpgradeCheck = 1630;
 				TargetAttributes = {
-					A97414982D9DDB1C00F74394 = {
+					A97414AC2D9DDB6300F74394 = {
 						CreatedOnToolsVersion = 16.3;
-					};
-					A9BBBA7E2D9C9506005A4061 = {
-						CreatedOnToolsVersion = 16.2;
 					};
 				};
 			};
-			buildConfigurationList = A9BBBA7A2D9C9506005A4061 /* Build configuration list for PBXProject "FormidabbleMobile" */;
+			buildConfigurationList = A97414A82D9DDB6300F74394 /* Build configuration list for PBXProject "FormidabbleMobileDemo" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = A9BBBA762D9C9506005A4061;
+			mainGroup = A97414A42D9DDB6300F74394;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = A9BBBA802D9C9506005A4061 /* Products */;
+			productRefGroup = A97414AE2D9DDB6300F74394 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A9BBBA7E2D9C9506005A4061 /* FormidabbleMobile */,
-				A97414982D9DDB1C00F74394 /* FormidabbleMobileDemo */,
+				A97414AC2D9DDB6300F74394 /* FormidabbleMobileDemo */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		A97414972D9DDB1C00F74394 /* Resources */ = {
+		A97414AB2D9DDB6300F74394 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A9BBBA7D2D9C9506005A4061 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				A9002ABB2D9DDCBF00FF2F55 /* DemoLaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		A97414952D9DDB1C00F74394 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A9BBBA7B2D9C9506005A4061 /* Sources */ = {
+		A97414A92D9DDB6300F74394 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -207,65 +156,7 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		A97414A12D9DDB1E00F74394 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = SZ688Z6ZE4;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.aleahim.co.FormidabbleMobileDemo;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		A97414A22D9DDB1E00F74394 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = SZ688Z6ZE4;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.aleahim.co.FormidabbleMobileDemo;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		A9BBBA8B2D9C9508005A4061 /* Debug */ = {
+		A97414B62D9DDB6500F74394 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -300,6 +191,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = SZ688Z6ZE4;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -317,7 +209,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -328,7 +220,7 @@
 			};
 			name = Debug;
 		};
-		A9BBBA8C2D9C9508005A4061 /* Release */ = {
+		A97414B72D9DDB6500F74394 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -363,6 +255,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = SZ688Z6ZE4;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -374,7 +267,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -384,20 +277,20 @@
 			};
 			name = Release;
 		};
-		A9BBBA8E2D9C9508005A4061 /* Debug */ = {
+		A97414B92D9DDB6500F74394 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"FormidabbleMobile/Preview Content\"";
 				DEVELOPMENT_TEAM = SZ688Z6ZE4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = FormidabbleMobile/Info.plist;
+				INFOPLIST_FILE = FormidabbleMobileDemo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -405,7 +298,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.aleahim.co.FormidabbleMobile;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aleahim.co.FormidabbleMobileDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -413,20 +306,20 @@
 			};
 			name = Debug;
 		};
-		A9BBBA8F2D9C9508005A4061 /* Release */ = {
+		A97414BA2D9DDB6500F74394 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"FormidabbleMobile/Preview Content\"";
 				DEVELOPMENT_TEAM = SZ688Z6ZE4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = FormidabbleMobile/Info.plist;
+				INFOPLIST_FILE = FormidabbleMobileDemo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -434,7 +327,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.aleahim.co.FormidabbleMobile;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aleahim.co.FormidabbleMobileDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -445,29 +338,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A97414A32D9DDB1E00F74394 /* Build configuration list for PBXNativeTarget "FormidabbleMobileDemo" */ = {
+		A97414A82D9DDB6300F74394 /* Build configuration list for PBXProject "FormidabbleMobileDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A97414A12D9DDB1E00F74394 /* Debug */,
-				A97414A22D9DDB1E00F74394 /* Release */,
+				A97414B62D9DDB6500F74394 /* Debug */,
+				A97414B72D9DDB6500F74394 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A9BBBA7A2D9C9506005A4061 /* Build configuration list for PBXProject "FormidabbleMobile" */ = {
+		A97414B82D9DDB6500F74394 /* Build configuration list for PBXNativeTarget "FormidabbleMobileDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A9BBBA8B2D9C9508005A4061 /* Debug */,
-				A9BBBA8C2D9C9508005A4061 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A9BBBA8D2D9C9508005A4061 /* Build configuration list for PBXNativeTarget "FormidabbleMobile" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A9BBBA8E2D9C9508005A4061 /* Debug */,
-				A9BBBA8F2D9C9508005A4061 /* Release */,
+				A97414B92D9DDB6500F74394 /* Debug */,
+				A97414BA2D9DDB6500F74394 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -475,11 +359,11 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		A9BBBADA2D9C9663005A4061 /* AppFeature */ = {
+		A9002AB82D9DDC2500FF2F55 /* AppFeature */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = AppFeature;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
-	rootObject = A9BBBA772D9C9506005A4061 /* Project object */;
+	rootObject = A97414A52D9DDB6300F74394 /* Project object */;
 }
