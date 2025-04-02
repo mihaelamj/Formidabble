@@ -8,13 +8,37 @@ public struct BetaSettingsView: View {
     public var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Simulated Load State")) {
-                    Picker("Load State", selection: $selection) {
+                Section(header: Text("Simulated Load State").font(.caption).foregroundColor(.secondary)) {
+                    VStack(alignment: .leading, spacing: 0) {
+                        Text("Load State")
+                            .font(.headline)
+                            .padding(.bottom, 4)
+
+                        Divider() // ⬅️ line under the title
+
                         ForEach(LoadSimulation.allCases, id: \.self) { value in
-                            Text(value.description).tag(value)
+                            Button(action: {
+                                selection = value
+                            }) {
+                                HStack {
+                                    Text(value.description)
+                                    Spacer()
+                                    if value == selection {
+                                        Image(systemName: "checkmark")
+                                            .foregroundColor(.accentColor)
+                                    }
+                                }
+                                .contentShape(Rectangle())
+                            }
+                            .buttonStyle(.plain)
+                            .padding(.vertical, 8)
+
+                            if value != LoadSimulation.allCases.last {
+                                Divider()
+                            }
                         }
                     }
-                    .pickerStyle(.inline)
+                    .padding(.vertical, 4)
                 }
 
                 Section {

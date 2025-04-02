@@ -77,7 +77,6 @@ This setup allows all logic to live inside Swift packages, with the app targets 
 
 ToDo:
 
-- add tests
-- use image cacheing
+- center Loading Image
 - check for typos
 - delete comment and obsolete debug code
