@@ -11,7 +11,7 @@ public enum QQuestionType: String, Codable, Sendable {
     case image
 }
 
-public struct QItem: Identifiable, Codable, Sendable {
+public struct QItem: Identifiable, Codable, Sendable, Equatable {
     public let id: String // changed from UUID to match "page1", "q1", etc.
     public let type: QItemType
     public let title: String?
@@ -47,6 +47,16 @@ public struct QItem: Identifiable, Codable, Sendable {
         case questionType
         case content = "text"
         case imageURL = "imageUrl"
+    }
+    
+    public static func == (lhs: QItem, rhs: QItem) -> Bool {
+        lhs.id == rhs.id &&
+        lhs.type == rhs.type &&
+        lhs.title == rhs.title &&
+        lhs.questionType == rhs.questionType &&
+        lhs.content == rhs.content &&
+        lhs.imageURL == rhs.imageURL &&
+        lhs.children == rhs.children
     }
 }
 
