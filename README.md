@@ -2,6 +2,28 @@
 
 Formidabble is a Swift-based app for rendering and managing complex, hierarchical forms with ease. Designed with clarity, performance, and offline support in mind, it offers a delightful experience for collecting structured data across platforms. Build forms that are not just fillable — but formidabble.
 
+## ✨ Features
+
+- **Hierarchical Form Display**
+  - Pages, Sections, and Questions with proper visual hierarchy
+  - Expandable/collapsible sections for better navigation
+  - Support for both text and image questions
+
+- **Robust Error Handling**
+  - Graceful handling of network failures
+  - Clear error messages with actionable suggestions
+  - Automatic fallback to cached data
+
+- **Offline Support**
+  - Automatic caching of form data
+  - Visual indicator when using cached content
+  - Seamless transition between online and offline modes
+
+- **Cross-Platform**
+  - Native iOS and macOS support
+  - Shared business logic across platforms
+  - Platform-specific UI optimizations
+
 ## 🧠 Architecture Philosophy
 
 Formidabble follows a **modular, scalable architecture** inspired by [merowing’s posts](https://www.merowing.info/), with a clear separation of concerns from day one:
@@ -75,7 +97,35 @@ Examples:
 
 This setup allows all logic to live inside Swift packages, with the app targets serving as light entry points. You can easily test, scale, and replace modules without impacting the rest of the system.
 
-ToDo:
 
-- check for typos
-- delete comment and obsolete debug code
+## 🎯 Challenge Requirements
+
+This project was built in response to the Lumiform iOS Code Challenge, implementing:
+
+- JSON data fetching from a mock API endpoint
+- Hierarchical display of Pages, Sections, and Questions
+- Proper font size hierarchy for different content types
+- Image handling with full-screen view support
+- Offline support with graceful fallback
+- Error handling with user-friendly messages
+
+## 🛠 Development
+
+### Prerequisites
+- Xcode 15.0+
+- iOS 16.0+ / macOS 13.0+
+- Swift 5.9+
+
+### Building
+1. Clone the repository
+2. Open `Main.xcworkspace` in Xcode
+3. Select your target platform (iOS or macOS)
+4. Build and run
+
+### Testing
+- Unit tests are included for all major components
+- Run tests using Cmd+U in Xcode
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
