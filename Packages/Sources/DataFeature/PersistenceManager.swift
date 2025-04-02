@@ -8,7 +8,7 @@ public actor PersistenceManager {
     private static let fileName = "cached_items.json"
 
     public init() {
-        cacheDirectory = fileManager.urls(for: .cachesDirectory, in: .userDomainMask).first!
+        cacheDirectory = fileManager.urls(for: .cachesDirectory, in: .userDomainMask).first! // swiftlint:disable:this force_unwrapping
     }
 
     func saveItems(_ items: [QItem]) async {

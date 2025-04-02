@@ -15,7 +15,7 @@ public actor ImageCache {
 
     private let fileManager = FileManager.default
     private let cacheDirectory: URL = {
-        let base = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
+        let base = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first! // swiftlint:disable:this force_unwrapping
         let folder = base.appendingPathComponent("ThumbnailCache", isDirectory: true)
         try? FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
         return folder

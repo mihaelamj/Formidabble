@@ -22,8 +22,10 @@ Formidabble follows a **modular, scalable architecture** inspired by [merowing�
 
 ```
 Apps/
-└── iOSApp/
-	└── FormidabbleMobileApp.swift → imports AppFeature
+├── iOSApp/
+│	└── FormidabbleMobileApp.swift → imports AppFeature
+└── macOSApp/
+    └── FormidabbleDesktopApp.swift → imports AppFeature   
 
 Packages/
 ├── AppFeature/
