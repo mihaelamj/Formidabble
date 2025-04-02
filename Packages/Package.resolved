@@ -1,6 +1,15 @@
 {
-  "originHash" : "280c42f9e1e308adf1a7bc7db6afa9487c283596485cf57f68882c3c251a6fb2",
+  "originHash" : "43384cae3e911522781a53d09abcebc1b899c26df5cc49f913eacf35af32ca78",
   "pins" : [
+    {
+      "identity" : "automaticsettings",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/krzysztofzablocki/AutomaticSettings",
+      "state" : {
+        "branch" : "main",
+        "revision" : "2b8cf3cb09aba49a1d3c2f8049f2b364b11858b3"
+      }
+    },
     {
       "identity" : "collectionconcurrencykit",
       "kind" : "remoteSourceControl",

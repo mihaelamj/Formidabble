@@ -3,7 +3,7 @@ import DataFeature
 
 @Observable
 @MainActor
-final class ContentViewModel {
+public final class ContentViewModel {
 
     enum LoadState {
         case idle, loading, loaded, error(Error)
@@ -32,11 +32,11 @@ final class ContentViewModel {
         isUsingCachedDataFlag
     }
 
-    init(dataService: DataService) {
+    public init(dataService: DataService) {
         self.dataService = dataService
     }
 
-    func loadData() async {
+    public func loadData() async {
         loadState = .loading
         isUsingCachedDataFlag = false
 

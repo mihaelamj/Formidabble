@@ -22,6 +22,7 @@ let package = Package(
                 "SharedModels",
                 "DataFeature",
                 "HomeFeature",
+                "BetaSettingsFeature",
             ]
         )
 
@@ -69,6 +70,13 @@ let package = Package(
             ]
         )
 
+        let betaSettingsFeatureTarget = Target.target(
+            name: "BetaSettingsFeature",
+            dependencies: [
+                "SharedModels",
+            ]
+        )
+
         var targets: [Target] = [
             appFeatureTarget,
             appFeatureTestsTarget,
@@ -77,6 +85,7 @@ let package = Package(
             homeFeatureTarget,
             dataFeatureTarget,
             dataFeatureTestsTarget,
+            betaSettingsFeatureTarget,
         ]
 
         return targets
