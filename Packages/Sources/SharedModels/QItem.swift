@@ -21,6 +21,24 @@ public struct QItem: Identifiable, Codable, Sendable {
     public let content: String?
     public let imageURL: URL?
 
+    public init(
+        id: String,
+        type: QItemType,
+        title: String? = nil,
+        children: [QItem]? = nil,
+        questionType: QQuestionType? = nil,
+        content: String? = nil,
+        imageURL: URL? = nil
+    ) {
+        self.id = id
+        self.type = type
+        self.title = title
+        self.children = children
+        self.questionType = questionType
+        self.content = content
+        self.imageURL = imageURL
+    }
+
     enum CodingKeys: String, CodingKey {
         case id
         case type = "itemType"
