@@ -6,9 +6,9 @@ public actor DataService {
         // swiftlint:disable:next force_unwrapping
         return URL(string: "https://run.mocky.io/v3/1800b96f-c579-49e5-b0b8-49856a36ce39")!
     }()
-    private let persistenceManager: PersistenceManager
+    private let persistenceManager: PersistenceManaging
 
-    public init(persistenceManager: PersistenceManager) {
+    public init(persistenceManager: PersistenceManaging) {
         self.persistenceManager = persistenceManager
     }
 

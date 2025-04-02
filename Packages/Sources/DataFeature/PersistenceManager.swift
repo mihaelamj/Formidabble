@@ -1,7 +1,12 @@
 import Foundation
 import SharedModels
 
-public actor PersistenceManager {
+public protocol PersistenceManaging: Actor {
+    func saveItems(_ items: [QItem])
+    func loadItems() -> [QItem]?
+}
+
+public actor PersistenceManager: PersistenceManaging {
     private let fileManager = FileManager.default
     private let cacheDirectory: URL
 
@@ -11,7 +16,7 @@ public actor PersistenceManager {
         cacheDirectory = fileManager.urls(for: .cachesDirectory, in: .userDomainMask).first! // swiftlint:disable:this force_unwrapping
     }
 
-    func saveItems(_ items: [QItem]) async {
+    public func saveItems(_ items: [QItem]) {
         let encoder = JSONEncoder()
         do {
             let data = try encoder.encode(items)
@@ -22,7 +27,7 @@ public actor PersistenceManager {
         }
     }
 
-    func loadItems() async -> [QItem]? {
+    public func loadItems() -> [QItem]? {
         let fileURL = cacheDirectory.appendingPathComponent(Self.fileName)
 
         guard fileManager.fileExists(atPath: fileURL.path) else { return nil }
