@@ -68,13 +68,13 @@ public struct ContentView: View {
                     Button {
                         viewModel.setAllExpanded(false)
                     } label: {
-                        Label("Collapse All", systemImage: "arrow.up.left.and.arrow.down.right")
+                        Label("Collapse All", systemImage: "arrow.down.right.and.arrow.up.left")
                     }
 
                     Button {
                         viewModel.setAllExpanded(true)
                     } label: {
-                        Label("Expand All", systemImage: "arrow.down.right.and.arrow.up.left")
+                        Label("Expand All", systemImage: "arrow.up.left.and.arrow.down.right")
                     }
                 }
             }
