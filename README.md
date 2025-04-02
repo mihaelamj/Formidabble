@@ -77,6 +77,5 @@ This setup allows all logic to live inside Swift packages, with the app targets 
 
 ToDo:
 
-- center Loading Image
 - check for typos
 - delete comment and obsolete debug code
