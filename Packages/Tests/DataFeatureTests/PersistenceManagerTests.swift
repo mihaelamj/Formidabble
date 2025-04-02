@@ -26,125 +26,122 @@ final class PersistenceManagerTests: XCTestCase {
 
     // MARK: - Test Data
 
-    private func createTestItems() -> [QItem] {
-        [
-            QItem(
-                id: "page1",
-                type: .page,
-                title: "Test Page",
-                children: nil,
-                questionType: nil,
-                content: nil,
-                imageURL: nil
-            ),
-            QItem(
-                id: "section1",
-                type: .section,
-                title: "Test Section",
-                children: [
-                    QItem(
-                        id: "question1",
-                        type: .question,
-                        title: "Test Question",
-                        children: nil,
-                        questionType: .text,
-                        content: "Question content",
-                        imageURL: nil
-                    ),
-                ],
-                questionType: nil,
-                content: nil,
-                imageURL: nil
-            ),
-        ]
+    private func createTestItems() -> QItem {
+        QItem(
+            type: .page,
+            title: "Test Page",
+            children: [
+                QItem(
+                    type: .section,
+                    title: "Test Section",
+                    children: [
+                        QItem(
+                            type: .question,
+                            title: "Test Question",
+                            children: nil,
+                            questionType: .text,
+                            imageURL: nil
+                        ),
+                    ],
+                    questionType: nil,
+                    imageURL: nil
+                ),
+            ],
+            questionType: nil,
+            imageURL: nil
+        )
     }
 
     // MARK: - Tests
 
     func testSaveAndLoadItems() async {
         // Given
-        let testItems = createTestItems()
+        let testItem = createTestItems()
 
         // When
-        await persistenceManager.saveItems(testItems)
-        let loadedItems = await persistenceManager.loadItems()
+        await persistenceManager.saveItems(testItem)
+        let loadedItem = await persistenceManager.loadItems()
 
         // Then
-        XCTAssertNotNil(loadedItems)
-        XCTAssertEqual(loadedItems?.count, testItems.count)
-        XCTAssertEqual(loadedItems?.first?.id, testItems.first?.id)
-        XCTAssertEqual(loadedItems?.first?.type, testItems.first?.type)
-        XCTAssertEqual(loadedItems?.first?.title, testItems.first?.title)
+        XCTAssertNotNil(loadedItem)
+        XCTAssertEqual(loadedItem?.type, testItem.type)
+        XCTAssertEqual(loadedItem?.title, testItem.title)
+        XCTAssertEqual(loadedItem?.children?.count, testItem.children?.count)
+        XCTAssertEqual(loadedItem?.children?.first?.type, testItem.children?.first?.type)
+        XCTAssertEqual(loadedItem?.children?.first?.title, testItem.children?.first?.title)
     }
 
     func testSaveAndLoadEmptyItems() async {
         // Given
-        let emptyItems: [QItem] = []
+        let emptyItem = QItem(
+            type: .page,
+            title: "Empty Page",
+            children: [],
+            questionType: nil,
+            imageURL: nil
+        )
 
         // When
-        await persistenceManager.saveItems(emptyItems)
-        let loadedItems = await persistenceManager.loadItems()
+        await persistenceManager.saveItems(emptyItem)
+        let loadedItem = await persistenceManager.loadItems()
 
         // Then
-        XCTAssertNotNil(loadedItems)
-        XCTAssertEqual(loadedItems?.count, 0)
+        XCTAssertNotNil(loadedItem)
+        XCTAssertEqual(loadedItem?.type, .page)
+        XCTAssertEqual(loadedItem?.title, "Empty Page")
+        XCTAssertEqual(loadedItem?.children?.count, 0)
     }
 
     func testSaveAndLoadItemsWithNestedStructure() async {
         // Given
-        let testItems = createTestItems()
+        let testItem = createTestItems()
 
         // When
-        await persistenceManager.saveItems(testItems)
-        let loadedItems = await persistenceManager.loadItems()
+        await persistenceManager.saveItems(testItem)
+        let loadedItem = await persistenceManager.loadItems()
 
         // Then
-        XCTAssertNotNil(loadedItems)
-        XCTAssertEqual(loadedItems?.count, testItems.count)
+        XCTAssertNotNil(loadedItem)
+        XCTAssertEqual(loadedItem?.type, .page)
+        XCTAssertEqual(loadedItem?.title, "Test Page")
 
         // Check nested structure
-        let loadedSection = loadedItems?.first { $0.type == .section }
+        let loadedSection = loadedItem?.children?.first
         XCTAssertNotNil(loadedSection)
+        XCTAssertEqual(loadedSection?.type, .section)
+        XCTAssertEqual(loadedSection?.title, "Test Section")
         XCTAssertEqual(loadedSection?.children?.count, 1)
         XCTAssertEqual(loadedSection?.children?.first?.type, .question)
         XCTAssertEqual(loadedSection?.children?.first?.questionType, .text)
+        XCTAssertEqual(loadedSection?.children?.first?.title, "Test Question")
     }
 
     func testSaveItemsOverwriteExisting() async {
         // Given
-        let initialItems = [
-            QItem(
-                id: "old1",
-                type: .page,
-                title: "Old Page",
-                children: nil,
-                questionType: nil,
-                content: nil,
-                imageURL: nil
-            ),
-        ]
+        let initialItem = QItem(
+            type: .page,
+            title: "Old Page",
+            children: nil,
+            questionType: nil,
+            imageURL: nil
+        )
 
-        let newItems = [
-            QItem(
-                id: "new1",
-                type: .page,
-                title: "New Page",
-                children: nil,
-                questionType: nil,
-                content: nil,
-                imageURL: nil
-            ),
-        ]
+        let newItem = QItem(
+            type: .page,
+            title: "New Page",
+            children: nil,
+            questionType: nil,
+            imageURL: nil
+        )
 
         // When
-        await persistenceManager.saveItems(initialItems)
-        await persistenceManager.saveItems(newItems)
-        let loadedItems = await persistenceManager.loadItems()
+        await persistenceManager.saveItems(initialItem)
+        await persistenceManager.saveItems(newItem)
+        let loadedItem = await persistenceManager.loadItems()
 
         // Then
-        XCTAssertNotNil(loadedItems)
-        XCTAssertEqual(loadedItems?.count, 1)
-        XCTAssertEqual(loadedItems?.first?.id, "new1")
-        XCTAssertEqual(loadedItems?.first?.title, "New Page")
+        XCTAssertNotNil(loadedItem)
+        XCTAssertEqual(loadedItem?.type, .page)
+        XCTAssertEqual(loadedItem?.title, "New Page")
     }
 }

@@ -68,6 +68,9 @@ let package = Package(
             name: "DataFeatureTests",
             dependencies: [
                 "DataFeature"
+            ],
+            resources: [
+                .process("Resources")
             ]
         )
 

@@ -53,6 +53,7 @@ final class SharedModelsTests: XCTestCase {
         )
 
         XCTAssertEqual(parentItem.children?.count, 1)
+        XCTAssertEqual(parentItem.children?.first?.title, "Child Question")
     }
 
     // MARK: - QItem Extensions Tests

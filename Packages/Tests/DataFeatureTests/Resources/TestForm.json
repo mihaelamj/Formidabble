@@ -1,0 +1,245 @@
+{
+    "type": "page",
+    "title": "Main Page",
+    "items": [
+        {
+            "type": "page",
+            "title": "Personal Information",
+            "items": [
+                {
+                    "type": "section",
+                    "title": "Basic Details",
+                    "items": [
+                        {
+                            "type": "text",
+                            "title": "What is your full name?"
+                        },
+                        {
+                            "type": "text",
+                            "title": "What is your date of birth?"
+                        },
+                        {
+                            "type": "image",
+                            "title": "Upload a photo of your ID.",
+                            "src": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop"
+                        }
+                    ]
+                },
+                {
+                    "type": "section",
+                    "title": "Contact Information",
+                    "items": [
+                        {
+                            "type": "text",
+                            "title": "What is your email address?"
+                        },
+                        {
+                            "type": "text",
+                            "title": "What is your phone number?"
+                        },
+                        {
+                            "type": "section",
+                            "title": "Address Details",
+                            "items": [
+                                {
+                                    "type": "text",
+                                    "title": "What is your street address?"
+                                },
+                                {
+                                    "type": "image",
+                                    "title": "Provide a photo of your neighborhood.",
+                                    "src": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "page",
+            "title": "Interests and Hobbies",
+            "items": [
+                {
+                    "type": "section",
+                    "title": "Outdoor Activities",
+                    "items": [
+                        {
+                            "type": "text",
+                            "title": "What outdoor activities do you enjoy?"
+                        },
+                        {
+                            "type": "image",
+                            "title": "Share a picture of your favorite outdoor spot.",
+                            "src": "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?q=80&w=2070&auto=format&fit=crop"
+                        },
+                        {
+                            "type": "section",
+                            "title": "Camping",
+                            "items": [
+                                {
+                                    "type": "text",
+                                    "title": "How often do you go camping?"
+                                },
+                                {
+                                    "type": "image",
+                                    "title": "Show your last camping trip.",
+                                    "src": "https://images.unsplash.com/photo-1504851149312-7a075b496cc7?q=80&w=2070&auto=format&fit=crop"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "section",
+                    "title": "Indoor Activities",
+                    "items": [
+                        {
+                            "type": "text",
+                            "title": "What indoor hobbies do you have?"
+                        },
+                        {
+                            "type": "image",
+                            "title": "Share an image of your workspace.",
+                            "src": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop"
+                        },
+                        {
+                            "type": "section",
+                            "title": "Gaming",
+                            "items": [
+                                {
+                                    "type": "text",
+                                    "title": "What is your favorite video game?"
+                                },
+                                {
+                                    "type": "image",
+                                    "title": "Show a screenshot of your gaming setup.",
+                                    "src": "https://images.unsplash.com/photo-1612287230202-1ff1d85d540f?q=80&w=2070&auto=format&fit=crop"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "page",
+            "title": "Travel Experiences",
+            "items": [
+                {
+                    "type": "text",
+                    "title": "What is your favorite travel destination?"
+                },
+                {
+                    "type": "section",
+                    "title": "Recent Trips",
+                    "items": [
+                        {
+                            "type": "text",
+                            "title": "Where did you travel last?"
+                        },
+                        {
+                            "type": "image",
+                            "title": "Share a photo from your last trip.",
+                            "src": "https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=2070&auto=format&fit=crop"
+                        },
+                        {
+                            "type": "section",
+                            "title": "Memorable Moments",
+                            "items": [
+                                {
+                                    "type": "text",
+                                    "title": "What was your favorite moment from that trip?"
+                                },
+                                {
+                                    "type": "image",
+                                    "title": "Show a picture of that moment.",
+                                    "src": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=2070&auto=format&fit=crop"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "section",
+                    "title": "Dream Destinations",
+                    "items": [
+                        {
+                            "type": "text",
+                            "title": "Where do you want to travel next?"
+                        },
+                        {
+                            "type": "image",
+                            "title": "Show an image of your dream destination.",
+                            "src": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2070&auto=format&fit=crop"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "page",
+            "title": "Work and Education",
+            "items": [
+                {
+                    "type": "section",
+                    "title": "Education History",
+                    "items": [
+                        {
+                            "type": "text",
+                            "title": "What is your highest level of education?"
+                        },
+                        {
+                            "type": "text",
+                            "title": "Which institution did you attend?"
+                        },
+                        {
+                            "type": "section",
+                            "title": "Certifications",
+                            "items": [
+                                {
+                                    "type": "text",
+                                    "title": "List any certifications you have."
+                                },
+                                {
+                                    "type": "image",
+                                    "title": "Upload a photo of your certificate.",
+                                    "src": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "section",
+                    "title": "Work Experience",
+                    "items": [
+                        {
+                            "type": "text",
+                            "title": "What is your current job title?"
+                        },
+                        {
+                            "type": "text",
+                            "title": "How long have you worked there?"
+                        },
+                        {
+                            "type": "section",
+                            "title": "Projects",
+                            "items": [
+                                {
+                                    "type": "text",
+                                    "title": "Describe a project you worked on."
+                                },
+                                {
+                                    "type": "image",
+                                    "title": "Share an image related to that project.",
+                                    "src": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

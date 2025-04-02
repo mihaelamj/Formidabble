@@ -1,11 +1,11 @@
-@testable import DataFeature
-import SharedModels
 import XCTest
+import DataFeature
+import SharedModels
 
 final class DataServiceTests: XCTestCase {
-    var sut: DataService!
-    fileprivate var mockPersistenceManager: MockPersistenceManager!
-    fileprivate var mockURLSession: MockURLSession!
+    private var sut: DataService!
+    private var mockPersistenceManager: MockPersistenceManager!
+    private var mockURLSession: MockURLSession!
 
     override func setUp() {
         super.setUp()
@@ -23,94 +23,171 @@ final class DataServiceTests: XCTestCase {
 
     // MARK: - Test Data
 
-    private func createTestItems() -> [QItem] {
-        [
-            QItem(
-                id: "page1",
-                type: .page,
-                title: "Test Page",
-                children: nil,
-                questionType: nil,
-                content: nil,
-                imageURL: nil
-            ),
-            QItem(
-                id: "section1",
-                type: .section,
-                title: "Test Section",
-                children: [
-                    QItem(
-                        id: "question1",
-                        type: .question,
-                        title: "Test Question",
-                        children: nil,
-                        questionType: .text,
-                        content: "Question content",
-                        imageURL: nil
-                    ),
-                ],
-                questionType: nil,
-                content: nil,
-                imageURL: nil
-            ),
-        ]
+    private func createTestItems() -> QItem {
+        QItem(
+            type: .page,
+            title: "Test Page",
+            children: [
+                QItem(
+                    type: .section,
+                    title: "Test Section",
+                    children: [
+                        QItem(
+                            type: .question,
+                            title: "Test Question",
+                            children: nil,
+                            questionType: .text,
+                            imageURL: nil
+                        ),
+                    ],
+                    questionType: nil,
+                    imageURL: nil
+                ),
+            ],
+            questionType: nil,
+            imageURL: nil
+        )
     }
 
     // MARK: - Tests
 
-    func testFetchDataSuccess() async throws {
-        // Given
-        let expectedItems = [QItem(id: "1", type: .page, title: "Test Item")]
-        let encoder = JSONEncoder()
-        let mockData = try encoder.encode(expectedItems)
-        mockURLSession.mockResponseData = mockData
-
-        // When
-        let items = try await sut.fetchData()
-
-        // Then
-        XCTAssertEqual(items, expectedItems)
-        let saveItemsCalled = await mockPersistenceManager.saveItemsCalled
-        XCTAssertTrue(saveItemsCalled)
-    }
-
     func testFetchDataWithCacheFallback() async throws {
         // Given
-        let cachedItems = [QItem(id: "1", type: .page, title: "Cached Item")]
-        await mockPersistenceManager.setMockItems(cachedItems)
+        let cachedItem = createTestItems()
+        await mockPersistenceManager.setMockItems(cachedItem)
         mockURLSession.shouldSimulateError = true
-        // Note: shouldSimulateLoadError is not set, so cached items will be returned
 
         // When
-        let items = try await sut.fetchData()
+        let result = try await sut.fetchData()
 
         // Then
-        XCTAssertEqual(items, cachedItems)
+        XCTAssertEqual(result.type, cachedItem.type)
+        XCTAssertEqual(result.title, cachedItem.title)
+        XCTAssertEqual(result.children?.count, cachedItem.children?.count)
+        XCTAssertEqual(result.children?.first?.type, cachedItem.children?.first?.type)
+        XCTAssertEqual(result.children?.first?.title, cachedItem.children?.first?.title)
+        XCTAssertEqual(result.children?.first?.children?.first?.type, cachedItem.children?.first?.children?.first?.type)
+        XCTAssertEqual(result.children?.first?.children?.first?.title, cachedItem.children?.first?.children?.first?.title)
+        XCTAssertEqual(result.children?.first?.children?.first?.questionType, cachedItem.children?.first?.children?.first?.questionType)
     }
 
     func testFetchDataWithBundledFallback() async throws {
         // Given
         mockURLSession.shouldSimulateError = true
         await mockPersistenceManager.setShouldSimulateLoadError(true)
-        // This will cause loadItems to return nil, forcing bundled data fallback
 
         // When
-        let items = try await sut.fetchData()
+        let result = try await sut.fetchData()
 
         // Then
-        XCTAssertFalse(items.isEmpty)
+        XCTAssertEqual(result.type, .page)
+        XCTAssertEqual(result.title, "Main Page")
+        XCTAssertEqual(result.children?.count, 4)
+        XCTAssertEqual(result.children?.first?.type, .page)
+        XCTAssertEqual(result.children?.first?.title, "Personal Information")
+        XCTAssertEqual(result.children?.first?.children?.count, 2)
+        XCTAssertEqual(result.children?.first?.children?.first?.type, .section)
+        XCTAssertEqual(result.children?.first?.children?.first?.title, "Basic Details")
+        XCTAssertEqual(result.children?.first?.children?.first?.children?.count, 3)
+        XCTAssertEqual(result.children?.first?.children?.first?.children?.first?.type, .question)
+        XCTAssertEqual(result.children?.first?.children?.first?.children?.first?.title, "What is your full name?")
+        XCTAssertEqual(result.children?.first?.children?.first?.children?.first?.questionType, .text)
+    }
+
+    func testLoadTestFormFromResources() throws {
+        // Given
+        guard let url = Bundle.module.url(forResource: "TestForm", withExtension: "json") else {
+            XCTFail("TestForm.json not found in resources")
+            return
+        }
+
+        // When
+        let data = try Data(contentsOf: url)
+        let item = try JSONDecoder().decode(QItem.self, from: data)
+
+        // Then
+        XCTAssertEqual(item.type, .page)
+        XCTAssertEqual(item.title, "Main Page")
+        XCTAssertEqual(item.children?.count, 4)
+        
+        // Check Personal Information page
+        let personalInfoPage = item.children?.first
+        XCTAssertEqual(personalInfoPage?.type, .page)
+        XCTAssertEqual(personalInfoPage?.title, "Personal Information")
+        XCTAssertEqual(personalInfoPage?.children?.count, 2)
+        
+        let basicDetailsSection = personalInfoPage?.children?.first
+        XCTAssertEqual(basicDetailsSection?.type, .section)
+        XCTAssertEqual(basicDetailsSection?.title, "Basic Details")
+        XCTAssertEqual(basicDetailsSection?.children?.count, 3)
+        
+        let nameQuestion = basicDetailsSection?.children?.first
+        XCTAssertEqual(nameQuestion?.type, .question)
+        XCTAssertEqual(nameQuestion?.title, "What is your full name?")
+        XCTAssertEqual(nameQuestion?.questionType, .text)
+        
+        let idPhotoQuestion = basicDetailsSection?.children?.last
+        XCTAssertEqual(idPhotoQuestion?.type, .question)
+        XCTAssertEqual(idPhotoQuestion?.title, "Upload a photo of your ID.")
+        XCTAssertEqual(idPhotoQuestion?.questionType, .image)
+        XCTAssertEqual(idPhotoQuestion?.imageURL?.absoluteString, "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop")
+        
+        // Check Contact Information section
+        let contactSection = personalInfoPage?.children?.last
+        XCTAssertEqual(contactSection?.type, .section)
+        XCTAssertEqual(contactSection?.title, "Contact Information")
+        XCTAssertEqual(contactSection?.children?.count, 3)
+        
+        let addressSection = contactSection?.children?.last
+        XCTAssertEqual(addressSection?.type, .section)
+        XCTAssertEqual(addressSection?.title, "Address Details")
+        XCTAssertEqual(addressSection?.children?.count, 2)
+        
+        // Check Interests and Hobbies page
+        let interestsPage = item.children?[1]
+        XCTAssertEqual(interestsPage?.type, .page)
+        XCTAssertEqual(interestsPage?.title, "Interests and Hobbies")
+        XCTAssertEqual(interestsPage?.children?.count, 2)
+        
+        // Check Travel Experiences page
+        let travelPage = item.children?[2]
+        XCTAssertEqual(travelPage?.type, .page)
+        XCTAssertEqual(travelPage?.title, "Travel Experiences")
+        XCTAssertEqual(travelPage?.children?.count, 3)
+        
+        // Check Work and Education page
+        let workPage = item.children?.last
+        XCTAssertEqual(workPage?.type, .page)
+        XCTAssertEqual(workPage?.title, "Work and Education")
+        XCTAssertEqual(workPage?.children?.count, 2)
+        
+        let educationSection = workPage?.children?.first
+        XCTAssertEqual(educationSection?.type, .section)
+        XCTAssertEqual(educationSection?.title, "Education History")
+        XCTAssertEqual(educationSection?.children?.count, 3)
+        
+        let certificationsSection = educationSection?.children?.last
+        XCTAssertEqual(certificationsSection?.type, .section)
+        XCTAssertEqual(certificationsSection?.title, "Certifications")
+        XCTAssertEqual(certificationsSection?.children?.count, 2)
+        
+        let certificatePhoto = certificationsSection?.children?.last
+        XCTAssertEqual(certificatePhoto?.type, .question)
+        XCTAssertEqual(certificatePhoto?.title, "Upload a photo of your certificate.")
+        XCTAssertEqual(certificatePhoto?.questionType, .image)
+        XCTAssertEqual(certificatePhoto?.imageURL?.absoluteString, "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop")
     }
 }
 
 // MARK: - Mock PersistenceManager
 
 private actor MockPersistenceManager: PersistenceManaging {
-    private var mockItems: [QItem]?
+    private var mockItems: QItem?
     private var shouldSimulateError = false
     private var shouldSimulateLoadError = false
     private(set) var saveItemsCalled = false
 
-    func setMockItems(_ items: [QItem]?) {
+    func setMockItems(_ items: QItem?) {
         mockItems = items
     }
 
@@ -122,7 +199,7 @@ private actor MockPersistenceManager: PersistenceManaging {
         shouldSimulateLoadError = value
     }
 
-    func saveItems(_ items: [QItem]) {
+    func saveItems(_ items: QItem) {
         saveItemsCalled = true
         if shouldSimulateError {
             return
@@ -130,7 +207,7 @@ private actor MockPersistenceManager: PersistenceManaging {
         mockItems = items
     }
 
-    func loadItems() -> [QItem]? {
+    func loadItems() -> QItem? {
         if shouldSimulateLoadError {
             return nil
         }
