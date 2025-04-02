@@ -26,20 +26,6 @@ struct AsyncImageView: View {
     var body: some View {
         AsyncImage(url: url, scale: 1.0) { phase in
             let kind = phase.kind
-
-            // 🔍 Log phase changes
-            if kind != currentKind {
-                print("📸 AsyncImageView - URL: \(url)")
-                switch kind {
-                case .empty:
-                    print("🕓 Phase: .empty (loading)")
-                case .success:
-                    print("✅ Phase: .success")
-                case .failure:
-                    print("❌ Phase: .failure")
-                }
-            }
-
             return ZStack {
                 ProgressView()
                     .opacity(kind == .empty ? 1 : 0)
