@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8DEB9A912DC282F5009D59C6 /* AppFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 8DEB9A902DC282F5009D59C6 /* AppFeature */; };
 		A9BBBADB2D9C9663005A4061 /* AppFeature in Frameworks */ = {isa = PBXBuildFile; productRef = A9BBBADA2D9C9663005A4061 /* AppFeature */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DEB9A912DC282F5009D59C6 /* AppFeature in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +108,7 @@
 			);
 			name = FormidabbleMobileDemo;
 			packageProductDependencies = (
+				8DEB9A902DC282F5009D59C6 /* AppFeature */,
 			);
 			productName = FormidabbleMobileDemo;
 			productReference = A97414992D9DDB1C00F74394 /* FormidabbleMobileDemo.app */;
@@ -477,6 +480,10 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		8DEB9A902DC282F5009D59C6 /* AppFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AppFeature;
+		};
 		A9BBBADA2D9C9663005A4061 /* AppFeature */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = AppFeature;
